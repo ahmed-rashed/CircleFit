@@ -1,4 +1,4 @@
-function LectureProblem_main()
+clearvars
 close all
 clc
 

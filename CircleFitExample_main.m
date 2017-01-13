@@ -1,4 +1,4 @@
-function CircleFitExample_main()
+clearvars
 close all
 clc
 
