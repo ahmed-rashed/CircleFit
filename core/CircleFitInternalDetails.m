@@ -4,7 +4,7 @@ figure
 % Nyquist's circle visualization
 subplot(6,2,[1,3,5]);
 set(gca,'XAxisLocation','top')
-plot_FRF_Nyq([H_local,H_gen_local],'H^\mathrm{local}',false,'.-');
+plot_FRF_Nyq([H_local,H_gen_local],[],'H^\mathrm{local}',false,'.-');
 
 % w_r point on the Nyquist diagram
 x_r = circ_prop.x_center+circ_prop.Radius*cos(theta_horizontal_r);
@@ -17,7 +17,7 @@ ax_mag_h=subplot(6,2,[2,4,6,8]);
 ax_phase_h=subplot(6,2,[10,12]);
 plot_FRF_mag_phase(f_local,[H_local,H_gen_local],false,ax_mag_h,ax_phase_h,'','H^\mathrm{local}');
 
-legend('Measured FRF','Generated FRF');
+legend('Measured','Circle-Fit');
 
 subplot(6,2,[7,9,11]);
 surf(f_before_mat,f_after_mat,eta_r_mat);

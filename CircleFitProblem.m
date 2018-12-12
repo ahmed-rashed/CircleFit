@@ -18,11 +18,11 @@ for ii=1:n_FRF
 
         subplot(2,n_FRF,n_FRF+ii);hold on
         %coloured_line_3d(real(Receptance(:,ii)),imag(Receptance(:,ii)),zeros(size(Receptance(:,ii))),f_col);view(2)
-        plot_FRF_Nyq(Receptance(:,ii),label_str);
+        plot_FRF_Nyq(Receptance(:,ii),[],label_str);
     end
 end
 
-% Circle-fit
+% A_r
 f2=figure;
 f_r_calc_col=nan(n_modes,n_FRF);
 zeta_r_calc_col=nan(n_modes,n_FRF);
@@ -35,11 +35,11 @@ for ii=1:n_FRF
         freq_local = f_col(LocalZone_flag);
         
         %Circle Fit
-        [Mode_Inf,circ_prop]=FRF_CircleFit(freq_local,Receptance_local,ShowInternalDetails)
-        f_r_calc_col(jj,ii)=Mode_Inf.f_r;
-        zeta_r_calc_col(jj,ii)=Mode_Inf.eta_r;
+        [f_r,eta_r,A_r,B_r,circ_prop]=FRF_CircleFit(freq_local,Receptance_local,ShowInternalDetails)
+        f_r_calc_col(jj,ii)=f_r;
+        zeta_r_calc_col(jj,ii)=eta_r;
         
-        Receptance_Calculated=Receptance_Calculated+Mode_Inf.A_r./(complex((2*pi*Mode_Inf.f_r)^2-(2*pi*f_col).^2,Mode_Inf.eta_r*(2*pi*Mode_Inf.f_r)^2));
+        Receptance_Calculated=Receptance_Calculated+A_r./(complex((2*pi*f_r)^2-(2*pi*f_col).^2,eta_r*(2*pi*f_r)^2));
         
         %Receptance_local visualization
         figure(f2)
@@ -50,10 +50,10 @@ for ii=1:n_FRF
     figure(f1)
     subplot(2,n_FRF,ii)
     semilogy(f_col,abs(Receptance_Calculated))
-    legend('Measured','Calculated');
+    legend('Measured','Circle-Fit');
    
     subplot(2,n_FRF,n_FRF+ii)
     %coloured_line_3d(real(Receptance(:,ii)),imag(Receptance(:,ii)),zeros(size(Receptance(:,ii))),f_col)
     plot(real(Receptance_Calculated),imag(Receptance_Calculated))
-    legend('Measured','Calculated');
+    legend('Measured','Circle-Fit');
 end
