@@ -7,11 +7,11 @@ set(groot,'DefaultLineLineWidth',1);
 
 % Model parameters:
 % mass matrix
-M = [1 0 0 ; 0 1 0 ; 0 0 1] ;
+M = [1 0 0; 0 1 0; 0 0 1] ;
 % damping matrix
-C = [40 0 0 ; 0 40 0 ; 0 0 40] ;
+C = [40 0 0; 0 40 0; 0 0 40] ;
 % stiffness matrix
-K = [237315 -161000 0 ; -161000 398315 -161000 ; 0 -161000 398315] ;
+K = [237315 -161000 0; -161000 398315 -161000; 0 -161000 398315] ;
 
 % FRF storage
 f_max=200;
@@ -37,4 +37,10 @@ w_r_col_exact/2/pi, zeta_r_col_exact
 set(groot,'DefaultAxesColorOrder','remove')
 set(groot,'DefaultLineLineWidth','remove')
 
-export_figure([1:3],'==',{'CircleFit1','CircleFit3','CircleFit2'})
+export_figure((1:3),'==',{'CircleFit1','CircleFit3','CircleFit2'})
+NN=N_DOF*length(f_mode_min);
+file_names=cell(1,NN);
+for ii=1:NN
+    file_names{ii}=['InternalDetails',int2str(ii)];
+end
+export_figure(3+(1:NN),'==',file_names)

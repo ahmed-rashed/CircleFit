@@ -8,25 +8,23 @@ n_modes=length(f_mode_min);
 % FRF Visualization
 f0=figure;
 f1=figure;
+f2=figure;
+f_r_calc_col=nan(n_modes,n_FRF);
+zeta_r_calc_col=nan(n_modes,n_FRF);
 for ii=1:n_FRF
+    label_str=['\alpha_{',int2str(n_row(ii)),',',int2str(m_row(ii)),'}'];
     for fig=[f0,f1]
         figure(fig)
         ax_mag_h=subplot(2,n_FRF,ii);hold on
         
-        label_str=['\alpha_{',int2str(n_row(ii)),int2str(m_row(ii)),'}'];
         plot_FRF_mag_phase(f_col,Receptance(:,ii),false,ax_mag_h,gobjects,'',label_str);
 
         subplot(2,n_FRF,n_FRF+ii);hold on
         %coloured_line_3d(real(Receptance(:,ii)),imag(Receptance(:,ii)),zeros(size(Receptance(:,ii))),f_col);view(2)
         plot_FRF_Nyq(Receptance(:,ii),[],label_str);
     end
-end
 
-% A_r
-f2=figure;
-f_r_calc_col=nan(n_modes,n_FRF);
-zeta_r_calc_col=nan(n_modes,n_FRF);
-for ii=1:n_FRF
+    % Circle-fit
     Receptance_Calculated=zeros(N,1);
     for jj=1:n_modes
         Receptance_temp=Receptance(:,ii);
@@ -35,7 +33,7 @@ for ii=1:n_FRF
         freq_local = f_col(LocalZone_flag);
         
         %Circle Fit
-        [f_r,eta_r,A_r,B_r,circ_prop]=FRF_CircleFit(freq_local,Receptance_local,ShowInternalDetails)
+        [f_r,eta_r,A_r,B_r,circ_prop]=FRF_CircleFit(freq_local,Receptance_local,ShowInternalDetails,label_str)
         f_r_calc_col(jj,ii)=f_r;
         zeta_r_calc_col(jj,ii)=eta_r;
         
