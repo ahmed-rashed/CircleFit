@@ -10,8 +10,8 @@ plot_FRF_Nyq([alpha_local_vec,alpha_gen_local_vec],[],label_str,false,'.-');
 title(['$',num2str(min(f_local_vec)),'\leq f\leq',num2str(max(f_local_vec)),'\;,:\Delta f=',num2str(Df),'$'],'interpreter', 'latex')
 
 % w_r point on the Nyquist diagram
-x_r = circ_prop.x_center+circ_prop.Radius*cos(beta_r);
-y_r = circ_prop.y_center+circ_prop.Radius*sin(beta_r);
+x_r=circ_prop.x_center+circ_prop.Radius*cos(beta_r);
+y_r=circ_prop.y_center+circ_prop.Radius*sin(beta_r);
 hold on
 plot([circ_prop.x_center,x_r],[circ_prop.y_center,y_r],'k');
 
@@ -30,9 +30,13 @@ ax_phase_h.XAxis.FontName='Times';
 
 legend(ax_mag_h,'Measured','Circle-Fit','Location','southeast');
 
-subplot(6,2,[7,9,11]);
-surf(f_before_mat,f_after_mat,eta_r_mat);
-axis tight
-xlabel('$f_{\mathrm{b},i}$ (Hz)','interpreter', 'latex');
-ylabel('$f_{\mathrm{a},j}$ (Hz)','interpreter', 'latex');
-zlabel('$\eta_{r,ij}$','interpreter', 'latex');
+if all(size(f_before_mat)>1)
+    subplot(6,2,[7,9,11]);
+    surf(f_before_mat,f_after_mat,eta_r_mat);
+    axis tight
+    xlabel('$f_{\mathrm{b},i}$ (Hz)','interpreter', 'latex');
+    ylabel('$f_{\mathrm{a},j}$ (Hz)','interpreter', 'latex');
+    zlabel('$\eta_{r,ij}$','interpreter', 'latex');
+else
+    warning('f_before_mat is not a matrix. damping surface was skipped')
+end

@@ -7,11 +7,11 @@ set(groot,'DefaultLineLineWidth',1);
 
 % Model parameters:
 % mass matrix
-M = [1 0 0; 0 1 0; 0 0 1] ;
+M=[1 0 0; 0 1 0; 0 0 1] ;
 % damping matrix
-C = [40 0 0; 0 40 0; 0 0 40] ;
+C=[40 0 0; 0 40 0; 0 0 40] ;
 % stiffness matrix
-K = [237315 -161000 0; -161000 398315 -161000; 0 -161000 398315] ;
+K=[237315 -161000 0; -161000 398315 -161000; 0 -161000 398315] ;
 
 % FRF storage
 f_max=200;
@@ -26,8 +26,8 @@ m_row=1:N_DOF;
 [EigVectors_Normalized, EigValues_vec]=MDOF_Eig_Visc(M, C, K);
 Receptance=MDOF_FRF_Visc(EigValues_vec, EigVectors_Normalized, 2*pi*f_col, n_row, m_row);
 
-f_mode_min = [45 85 115] ;
-f_mode_max = [55 95 125] ;
+f_mode_min=[45 85 115] ;
+f_mode_max=[55 95 125] ;
 ShowInternalDetails=true;
 CircleFitProblem(Receptance,D_f,n_row,m_row,f_mode_min,f_mode_max,ShowInternalDetails);
 

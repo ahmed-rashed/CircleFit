@@ -7,15 +7,15 @@ set(groot,'DefaultLineLineWidth',1);
 
 % Model parameters:
 % mass matrix
-M = [1 0 0
+M=[1 0 0
     0 1 0
     0 0 1] ;
 % damping matrix
-C = [50 -20 -20
+C=[50 -20 -20
     -20 50 -30
     -20 -30 50];
 % stiffness matrix
-K = [237315 -161000 0
+K=[237315 -161000 0
     -161000 398315 -161000
     0 -161000 398315] ;
 

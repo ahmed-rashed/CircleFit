@@ -29,8 +29,8 @@ for ii=1:n_FRF
     for jj=1:n_modes
         Receptance_temp=Receptance(:,ii);
         LocalZone_flag=(f_col>=f_mode_min(jj)) & (f_col<=f_mode_max(jj));
-        Receptance_local = Receptance_temp(LocalZone_flag);
-        freq_local = f_col(LocalZone_flag);
+        Receptance_local=Receptance_temp(LocalZone_flag);
+        freq_local=f_col(LocalZone_flag);
         
         %Circle Fit
         [f_r,eta_r,A_r,B_r,circ_prop]=FRF_CircleFit(freq_local,Receptance_local,ShowInternalDetails,label_str)
