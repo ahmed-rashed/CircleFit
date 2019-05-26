@@ -56,19 +56,19 @@ beta_r=beta_b+(f_r-f_b)*(beta_a-beta_b)/(f_a-f_b);
     %Method 2: average points for which -pi/2 <= theta <= pi/2(for the solving in the final exam)
     %More accurate but longer method (Do not use this method in the final exam)
     theta_temp=beta-beta_r; %+ve direction is ccw, same as beta and opposite to the omega direction
-    flag_b=(theta_temp > 0) & (theta_temp <= pi/2);
-    flag_a=(theta_temp >= -pi/2) & (theta_temp < 0);
+    flag_b_vec=(theta_temp > 0) & (theta_temp <= pi/2);
+    flag_a_vec=(theta_temp >= -pi/2) & (theta_temp < 0);
 
-    theta_b=theta_temp(flag_b);  %+ve
-    theta_a=-theta_temp(flag_a);  %+ve
-    if length(theta_b)<=1 || length(theta_a)<=1,
+    theta_b_vec=theta_temp(flag_b_vec);  %+ve
+    theta_a_vec=-theta_temp(flag_a_vec);  %+ve
+    if length(theta_b_vec)<=1 || length(theta_a_vec)<=1,
         warning('Resolution of alpha_local_vec is coarse.'),
     end
-    [theta_b_mat,theta_a_mat]=meshgrid(theta_b,theta_a);
+    [theta_b_mat,theta_a_mat]=meshgrid(theta_b_vec,theta_a_vec);
 
-    w_b=2*pi*f_local_vec(flag_b);
-    w_a=2*pi*f_local_vec(flag_a);
-    [w_b_mat,w_a_mat]=meshgrid(w_b,w_a);
+    w_b_vec=2*pi*f_local_vec(flag_b_vec);
+    w_a_vec=2*pi*f_local_vec(flag_a_vec);
+    [w_b_mat,w_a_mat]=meshgrid(w_b_vec,w_a_vec);
 
     eta_r_mat=(w_a_mat.^2-w_b_mat.^2)/w_r^2./(tan(theta_a_mat/2)+tan(theta_b_mat/2));
     %eta_r=mean(mean(eta_r_mat));
