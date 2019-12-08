@@ -24,9 +24,9 @@ ind_r=find(temp1==f_r);
 set(ax_phase_h,'XTick',temp1);
 set(ax_mag_h,'XTick',temp1);
 temp2=get(ax_phase_h,'XTickLabel');
-temp2{ind_r}=['{\itf_{r}}=',num2str(f_r,'%.2f' )];
+temp2{ind_r}=['$f_{r}=',num2str(f_r,'%.2f'),'$'];
 set(ax_phase_h,'XTickLabel',temp2);
-ax_phase_h.XAxis.FontName='Times';
+ax_phase_h.TickLabelInterpreter='latex';
 
 legend(ax_mag_h,'Measured','Circle-Fit','Location','southeast');
 
