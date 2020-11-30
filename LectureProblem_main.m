@@ -28,8 +28,8 @@ f_col=(0:N-1).'*D_f;
 n_row=[2,3];
 m_row=[3,3];
 
-[EigVectors_Normalized, EigValues_vec]=MDOF_Eig_Visc(M, C, K);
-Receptance=MDOF_FRF_Visc(EigValues_vec, EigVectors_Normalized, 2*pi*f_col, n_row, m_row);
+[EigVectors_Normalized,EigValues_vec]=MDOF_Eig_Visc(M,C,K);
+Receptance=MDOF_FRF_Visc(EigValues_vec,EigVectors_Normalized,2*pi*f_col,n_row,m_row);
 
 f_mode_min=[120];
 f_mode_max=[125];

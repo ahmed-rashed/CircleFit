@@ -55,7 +55,7 @@ beta_r=beta_b+(f_r-f_b)*(beta_a-beta_b)/(f_a-f_b);
 
     %Method 2: average points for which -pi/2 <= theta <= pi/2(for the solving in the final exam)
     %More accurate but longer method (Do not use this method in the final exam)
-    theta_temp=beta-beta_r; %+ve direction is ccw, same as beta and opposite to the omega direction
+    theta_temp=beta-beta_r; %+ve direction is ccw,same as beta and opposite to the omega direction
     flag_b_vec=(theta_temp > 0) & (theta_temp <= pi/2);
     flag_a_vec=(theta_temp >= -pi/2) & (theta_temp < 0);
 
