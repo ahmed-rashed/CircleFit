@@ -20,16 +20,16 @@ D_f=f_max/N;
 f_col=(0:N-1).'*D_f;
 
 N_DOF=size(M,1);
-n_row=ones(1,N_DOF);
-m_row=1:N_DOF;
+m_row=ones(1,N_DOF);
+n_row=1:N_DOF;
 
 [EigVectors_Normalized,EigValues_vec]=MDOF_Eig_Visc(M,C,K);
-Receptance=MDOF_FRF_Visc(EigValues_vec,EigVectors_Normalized,2*pi*f_col,n_row,m_row);
+Receptance=MDOF_FRF_Visc(EigValues_vec,EigVectors_Normalized,2*pi*f_col,m_row,n_row);
 
 f_mode_min=[45 85 115] ;
 f_mode_max=[55 95 125] ;
 ShowInternalDetails=true;
-CircleFitProblem(Receptance,D_f,n_row,m_row,f_mode_min,f_mode_max,ShowInternalDetails);
+CircleFitProblem(Receptance,D_f,m_row,n_row,f_mode_min,f_mode_max,ShowInternalDetails);
 
 [w_r_col_exact,zeta_r_col_exact]=MDOF_Modal_Param_Visc(EigValues_vec);
 w_r_col_exact/2/pi,zeta_r_col_exact

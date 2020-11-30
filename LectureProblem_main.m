@@ -25,16 +25,16 @@ N=400;
 D_f=f_max/N;
 f_col=(0:N-1).'*D_f;
 
-n_row=[2,3];
-m_row=[3,3];
+m_row=[2,3];
+n_row=[3,3];
 
 [EigVectors_Normalized,EigValues_vec]=MDOF_Eig_Visc(M,C,K);
-Receptance=MDOF_FRF_Visc(EigValues_vec,EigVectors_Normalized,2*pi*f_col,n_row,m_row);
+Receptance=MDOF_FRF_Visc(EigValues_vec,EigVectors_Normalized,2*pi*f_col,m_row,n_row);
 
 f_mode_min=[120];
 f_mode_max=[125];
 ShowInternalDetails=true;
-CircleFitProblem(Receptance,D_f,n_row,m_row,f_mode_min,f_mode_max,ShowInternalDetails);
+CircleFitProblem(Receptance,D_f,m_row,n_row,f_mode_min,f_mode_max,ShowInternalDetails);
 
 set(groot,'DefaultAxesColorOrder','remove')
 set(groot,'DefaultLineLineWidth','remove')

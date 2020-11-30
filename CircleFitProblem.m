@@ -1,8 +1,8 @@
-function CircleFitProblem(Receptance,Df,n_row,m_row,f_mode_min,f_mode_max,ShowInternalDetails)
+function CircleFitProblem(Receptance,Df,m_row,n_row,f_mode_min,f_mode_max,ShowInternalDetails)
 
 N=size(Receptance,1);
 f_col=(0:N-1).'*Df;
-n_FRF=length(n_row);
+n_FRF=length(m_row);
 n_modes=length(f_mode_min);
 
 % FRF Visualization
@@ -12,7 +12,7 @@ f2=figure;
 f_r_calc_col=nan(n_modes,n_FRF);
 zeta_r_calc_col=nan(n_modes,n_FRF);
 for ii=1:n_FRF
-    label_str=['\alpha_{',int2str(n_row(ii)),',',int2str(m_row(ii)),'}'];
+    label_str=['\alpha_{',int2str(m_row(ii)),',',int2str(n_row(ii)),'}'];
     for fig=[f0,f1]
         figure(fig)
         ax_mag_h=subplot(2,n_FRF,ii);hold on
@@ -42,7 +42,7 @@ for ii=1:n_FRF
         %Receptance_local visualization
         figure(f2)
         ax=subplot(n_FRF,n_modes,(ii-1)*n_modes+jj);
-        visualizeLocalReceptance(freq_local,Receptance_local,circ_prop,n_row(ii),m_row(ii),ax);
+        visualizeLocalReceptance(freq_local,Receptance_local,circ_prop,m_row(ii),n_row(ii),ax);
     end
     
     figure(f1)
