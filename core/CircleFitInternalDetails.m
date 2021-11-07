@@ -7,7 +7,7 @@ Df=f_local_vec(2)-f_local_vec(1);
 subplot(6,2,[1,3,5]);
 set(gca,'XAxisLocation','top')
 plot_FRF_Nyq([alpha_local_vec,alpha_gen_local_vec],[],label_str,false,'.-');
-title(['$',num2str(min(f_local_vec)),'\leq f\leq',num2str(max(f_local_vec)),'\;,:\Delta f=',num2str(Df),'$'],'interpreter','latex')
+title("$"+min(f_local_vec)+'\leq f\leq'+max(f_local_vec)+'\;,:\Delta f='+Df+'$','interpreter','latex')
 
 % w_r point on the Nyquist diagram
 x_r=circ_prop.x_center+circ_prop.Radius*cos(beta_r);
@@ -24,7 +24,7 @@ ind_r=find(temp1==f_r);
 set(ax_phase_h,'XTick',temp1);
 set(ax_mag_h,'XTick',temp1);
 temp2=get(ax_phase_h,'XTickLabel');
-temp2{ind_r}=['$f_{r}=',num2str(f_r,'%.2f'),'$'];
+temp2{ind_r}="$f_{r}="+num2str(f_r,'%.2f')+'$';
 set(ax_phase_h,'XTickLabel',temp2);
 ax_phase_h.TickLabelInterpreter='latex';
 

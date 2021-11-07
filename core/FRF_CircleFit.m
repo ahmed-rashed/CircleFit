@@ -30,7 +30,7 @@ circ_prop=struct('x_center',x_center,'y_center',y_center,'Radius',Radius);
 
 %Identify the two points surrounding w_r
 chord=sqrt((real(alpha_local_vec(2:end))-real(alpha_local_vec(1:end-1))).^2+(imag(alpha_local_vec(2:end))-imag(alpha_local_vec(1:end-1))).^2);
-[chord_max,index]=max(chord);
+[~,index]=max(chord);
 f_b=f_local_vec(index);
 f_a=f_local_vec(index+1);
 u_z_max=-(chord(index+1)-chord(index-1))/2/(chord(index+1)-2*chord(index)+chord(index-1));
@@ -55,7 +55,7 @@ beta_r=beta_b+(f_r-f_b)*(beta_a-beta_b)/(f_a-f_b);
 
     %Method 2: average points for which -pi/2 <= theta <= pi/2(for the solving in the final exam)
     %More accurate but longer method (Do not use this method in the final exam)
-    theta_temp=beta-beta_r; %+ve direction is ccw,same as beta and opposite to the omega direction
+    theta_temp=beta-beta_r; %+ve direction is ccw, same as beta and opposite to the omega direction
     flag_b_vec=(theta_temp > 0) & (theta_temp <= pi/2);
     flag_a_vec=(theta_temp >= -pi/2) & (theta_temp < 0);
 
@@ -76,7 +76,7 @@ beta_r=beta_b+(f_r-f_b)*(beta_a-beta_b)/(f_a-f_b);
 % Mode shape calculation (A_r)
 A_r=2*Radius*w_r^2*eta_r*exp(1i*(pi/2+beta_r));
 
-% Residue calculation (B_r)
+% Residuals calculation (B_r)
 B_r=complex(x_center,y_center)-Radius*exp(1i*beta_r);
 
 if ShowInternalDetails

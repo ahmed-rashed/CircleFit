@@ -12,7 +12,7 @@ f2=figure;
 f_r_calc_col=nan(n_modes,n_FRF);
 zeta_r_calc_col=nan(n_modes,n_FRF);
 for ii=1:n_FRF
-    label_str=['\alpha_{',int2str(m_row(ii)),',',int2str(n_row(ii)),'}'];
+    label_str="\alpha_{"+m_row(ii)+','+n_row(ii)+'}';
     for fig=[f0,f1]
         figure(fig)
         ax_mag_h=subplot(2,n_FRF,ii);hold on

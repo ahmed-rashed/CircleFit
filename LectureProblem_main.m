@@ -39,4 +39,4 @@ CircleFitProblem(Receptance,D_f,m_row,n_row,f_mode_min,f_mode_max,ShowInternalDe
 set(groot,'DefaultAxesColorOrder','remove')
 set(groot,'DefaultLineLineWidth','remove')
 
-export_figure(3,'',{'CircleFitProblem'})
+export_figure(3,'',"CircleFitProblem")
