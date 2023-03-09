@@ -5,7 +5,7 @@ if nargin<6
     ax=cla;
 end
 
-plot_FRF_Nyq(Receptance_local,[],['\alpha_{',int2str(ii),',',int2str(jj),'}'],false,'.-k','MarkerSize',10);
+plot_FRF_Nyq(Receptance_local,[],"\alpha_{"+ii+','+jj+'}',false,'.-k','MarkerSize',10);
 title(ax,"$\qquad\qquad\qquad"+min(f_local)+'\leq f\leq'+max(f_local)+'\;,:\Delta f='+Df+'$','interpreter','latex')
 
 for tt=1:1/Df:length(f_local)

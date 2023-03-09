@@ -30,18 +30,17 @@ m_row=ones(1,N_DOF);
 n_row=1:N_DOF;
 
 [EigVectors_Normalized,EigValues_vec]=MDOF_Eig_Visc(M_mat,C_mat,K_mat);
-[w_r_col_exact,zeta_r_col_exact]=MDOF_Modal_Param_Visc(EigValues_vec);
+[w_r_col_exact,zeta_r_col_exact]=pole2modal_visc(EigValues_vec);
 w_r_col_exact/2/pi,zeta_r_col_exact
 
 H_receptance_cols=MDOF_FRF_Visc(EigValues_vec,EigVectors_Normalized,2*pi*f_col,m_row,n_row);
 h_receptance_cols=MDOF_IRF_Visc(EigValues_vec,EigVectors_Normalized,t_col,m_row,n_row);
 
-N_hat=N_DOF;
-for nn=1:N_DOF
-    [w_r_col,zeta_r_col]=CE(h_receptance_cols(:,nn),D_t,N_hat);
-    error=norm((w_r_col-w_r_col_exact)./w_r_col_exact) %#ok<NOPTS,NASGU> 
-    error=norm((zeta_r_col-zeta_r_col_exact)./zeta_r_col_exact) %#ok<NOPTS> 
-end
+N_hat_max=2*N_DOF;
+i_H=1;
+[w_r_col,zeta_r_col,InvConditionNumber,leastSquareError]=CE(h_receptance_cols(:,i_H),D_t,N_hat_max);
+error=norm((w_r_col-w_r_col_exact)./w_r_col_exact) %#ok<NOPTS,NASGU> 
+error=norm((zeta_r_col-zeta_r_col_exact)./zeta_r_col_exact) %#ok<NOPTS> 
 
 f_mode_min=[45 85 115] ;
 f_mode_max=[55 95 125] ;
