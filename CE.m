@@ -1,4 +1,4 @@
-function [w_r_col,zeta_r_col,stabilized_f_zeta_r_col,A_r_cols]=CE(h_receptance_col,f_col,N_hat_max, ...
+function [w_r_col,zeta_r_col,stabilized_f_zeta_r_col,A_r_cols]=CE(H_Receptance_col,f_col,N_hat_max, ...
                                                                     f_r_tol,zeta_r_tol)   %Optional arguments
 
 if ~iscolumn(f_col),error('f_col must be a column vector.'),end
@@ -29,9 +29,12 @@ D_f=f_col(2)-f_col(1);
 [D_t,~,~]=samplingParameters_T_N(1/D_f,N_t);
 
 if N_t<(2*N_hat_max)^2+1,error('N_t must be >=(2*N_hat)^2+1'),end
-L=floor(length(h_receptance_col)/(2*N_hat_max));
 
 h_receptance_col=ifft(H_Receptance_col,N_t,1,'symmetric')*N_t/2; % impulse response functions
+
+L=floor(length(h_receptance_col)/(2*N_hat_max));
+
+N_modes_max=N_hat_max;
 f_r_cell=cell(N_modes_max,1);
 zeta_r_cell=f_r_cell;
 stabilized_f_r_cell=f_r_cell;
