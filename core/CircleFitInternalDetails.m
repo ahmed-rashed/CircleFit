@@ -24,7 +24,7 @@ ind_r=find(temp1==f_r);
 set(ax_phase_h,'XTick',temp1);
 set(ax_mag_h,'XTick',temp1);
 temp2=get(ax_phase_h,'XTickLabel');
-temp2{ind_r}="$f_{r}="+num2str(f_r,'%.2f')+'$';
+temp2{ind_r}="$f_{p}="+num2str(f_r,'%.2f')+'$';
 set(ax_phase_h,'XTickLabel',temp2);
 ax_phase_h.TickLabelInterpreter='latex';
 
@@ -36,7 +36,7 @@ if all(size(f_before_mat)>1)
     axis tight
     xlabel('$f_{\mathrm{b},i}$ (Hz)','interpreter','latex');
     ylabel('$f_{\mathrm{a},j}$ (Hz)','interpreter','latex');
-    zlabel('$\eta_{r,ij}$','interpreter','latex');
+    zlabel('$\eta_{p,ij}$','interpreter','latex');
 else
     warning('f_before_mat is not a matrix. damping surface was skipped')
 end
